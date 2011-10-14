@@ -36,10 +36,19 @@ class Character
   #Setting level should not be common for players.  Actually sets the XP to minimum for that level.
   def level=(n)
     self.experience = (25 * (3 * n + 2) * (n - 1))
+    @level = n
   end
   
   def level
-    return ((1 + Math.sqrt(1 + (12 * ((experience / 25) + 2)))) / 6).to_i
+    unless @level
+      @level = ((1 + Math.sqrt(1 + (12 * ((experience.to_i / 25) + 2)))) / 6).to_i
+    end
+    return @level
+  end
+  
+  def add_xp(n)
+    experience += n
+    @level = nil
   end
   
   #Health  
