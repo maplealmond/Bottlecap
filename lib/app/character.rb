@@ -11,13 +11,13 @@ class Character
   field :race, type: String
       
   #Core Stats
-  field :strength,     type: Integer
-  field :perception,   type: Integer
-  field :endurance,    type: Integer
-  field :charisma,     type: Integer
-  field :intelligence, type: Integer
-  field :agility,      type: Integer
-  field :luck,         type: Integer
+  field :st, type: Integer
+  field :pe, type: Integer
+  field :en, type: Integer
+  field :ch, type: Integer
+  field :in, type: Integer
+  field :ag, type: Integer
+  field :lk, type: Integer
   
   #Skills
   embeds_many :skills
@@ -53,7 +53,7 @@ class Character
   
   #Health  
   def max_hp
-    95 + (endurance * 20) + (level * 5)
+    95 + (en * 20) + (level * 5)
   end
   
   def hp
@@ -68,7 +68,7 @@ class Character
   
   #AP Stuff
   def max_ap
-    10 + agility
+    10 + ag
   end
   
   def reset_ap
@@ -76,7 +76,7 @@ class Character
   end
   
   def evade
-    agility + (@ap/2)
+    ag + (@ap/2)
   end
   
   def complete
@@ -95,6 +95,10 @@ class Character
     perk = perks.find_or_create_by(name: perk)
     perk.rank = perk.rank.to_i + 1
     perk.save
+  end
+  
+  def sequence
+    pe + ag
   end
   
 end

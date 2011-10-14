@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'app/game'
 
 describe Game do
-  before (:each) do
+  before (:all) do
     @game = Game.new
   end
   
