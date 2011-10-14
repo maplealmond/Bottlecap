@@ -8,7 +8,7 @@ end
 
 Given /^"([^"]*)" is level (\d+)$/ do |name, level|
   character = Character.where(name: name).first
-  character.level = level
+  character.level = level.to_i
   character.save
 end
 

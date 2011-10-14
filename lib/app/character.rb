@@ -9,8 +9,7 @@ class Character
   index :name, unique: true
   
   field :race, type: String
-  field :level, type: Integer  
-  
+      
   #Core Stats
   field :strength,     type: Integer
   field :perception,   type: Integer
@@ -30,6 +29,18 @@ class Character
   field :food, type: Integer
   field :water, type: Integer
   field :sleep, type: Integer
+  
+  #Level and XP
+  field :experience, type: Integer
+  
+  #Setting level should not be common for players.  Actually sets the XP to minimum for that level.
+  def level=(n)
+    self.experience = (25 * (3 * n + 2) * (n - 1))
+  end
+  
+  def level
+    return ((1 + Math.sqrt(1 + (12 * ((experience / 25) + 2)))) / 6).to_i
+  end
   
   #Health  
   def max_hp
