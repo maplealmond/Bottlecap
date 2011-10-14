@@ -47,7 +47,7 @@ class Character
   end
   
   def add_xp(n)
-    experience += n
+    self.experience = self.experience.to_i + n
     @level = nil
   end
   

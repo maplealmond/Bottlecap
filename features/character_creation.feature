@@ -11,3 +11,12 @@ Scenario: Character Creation
 	And  "Anna" tags the skill "Firearms"
 	And  "Anna" takes the perk "Gun Nut"
 	Then "Anna" should be complete
+
+#The experience points required for level n can be calculated from the equation 25(3n + 2)(n - 1).
+Scenario: Adding XP levels a character up
+	Given a new character "Bob"
+	And "Bob" is level 1
+	When "Bob" gains 200 XP
+	Then "Bob" should be level 2
+	When "Bob" gains 23600 XP
+	Then "Bob" should be level 18

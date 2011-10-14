@@ -12,6 +12,11 @@ Given /^"([^"]*)" is level (\d+)$/ do |name, level|
   character.save
 end
 
+Then /^"([^"]*)" should be level (\d+)$/ do |name, level|
+  character = Character.where(name: name).first
+  character.level.should == level.to_i
+end
+
 Then /^"([^"]*)" should not be complete$/ do |name|
   character = Character.where(name: name).first
   character.complete.should_not == true
@@ -37,5 +42,11 @@ end
 When /^"([^"]*)" takes the perk "([^"]*)"$/ do |name, perk|
   character = Character.where(name: name).first
   character.take_perk(perk)
+  character.save
+end
+
+When /^"([^"]*)" gains (\d+) XP$/ do |name, xp|
+  character = Character.where(name: name).first
+  character.add_xp(xp.to_i)
   character.save
 end
