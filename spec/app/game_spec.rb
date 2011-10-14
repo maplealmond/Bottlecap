@@ -11,16 +11,4 @@ describe Game do
     @game.name.should == "Test"
   end
   
-  context "character advancement" do
-    it "#character_create"
-    it "#character_create"
-  end
-  
-  context "combat" do
-    it "starts initiative"
-    it "ends initiative"
-    it "cycles turns"
-    it "lets one character hurt another with a basic attack"
-  end
-  
 end

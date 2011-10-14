@@ -1,9 +1,11 @@
 class Character
   include Mongoid::Document
   
+  #Basic Info
   field :name, type: String
   index :name, unique: true
   
+  field :race, type: String
   field :level, type: Integer  
   
   #Core Stats
@@ -14,6 +16,9 @@ class Character
   field :intelligence, type: Integer
   field :agility,      type: Integer
   field :luck,         type: Integer
+  
+  #Skills
+  field :tagged,       type: Array
   
   #Potential problems
   field :damage, type: Integer
@@ -50,5 +55,8 @@ class Character
     agility + (@ap/2)
   end
   
+  def complete
+    self.race.to_s.length > 0
+  end
   
 end
