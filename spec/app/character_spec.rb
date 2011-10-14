@@ -2,11 +2,6 @@ require 'spec_helper'
 require 'app/character'
 
 describe Character do
-
-  before (:all) do
-    Character.destroy_all
-  end
-  
   before (:each) do
     @character = Character.new(name: "Test")
   end
@@ -14,12 +9,7 @@ describe Character do
   it "has a name" do
     @character.name.should == "Test"
   end
-  
-  it "can be persisted" do
-    @character.save
-    Character.where(name: "Test").first.name.should == "Test"
-  end
-  
+    
   it "has special stats" do
     @character.strength     = 10
     @character.perception   = 11

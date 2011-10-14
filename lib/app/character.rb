@@ -1,3 +1,6 @@
+require './lib/app/skills'
+require './lib/app/perks'
+
 class Character
   include Mongoid::Document
   
@@ -18,7 +21,8 @@ class Character
   field :luck,         type: Integer
   
   #Skills
-  field :tagged,       type: Array
+  embeds_many :skills
+  embeds_many :perks
   
   #Potential problems
   field :damage, type: Integer
@@ -56,7 +60,21 @@ class Character
   end
   
   def complete
-    self.race.to_s.length > 0
+    self.race.to_s.length > 0 and \
+    self.skills.where(tagged: true).size >= 2 and \
+    self.perks.size >= level
+  end
+  
+  def tag_skill(skill)
+    skill = skills.find_or_create_by(name: skill)
+    skill.tagged = true
+    skill.save
+  end
+  
+  def take_perk(perk)
+    perk = perks.find_or_create_by(name: perk)
+    perk.rank = perk.rank.to_i + 1
+    perk.save
   end
   
 end
