@@ -1,30 +1,27 @@
 class Game
-  attr_accessor :name
+  include Mongoid::Document
+    
+  field :name, type: String
+  index :name, unique: true
+  has_many :characters
   
-  def self.skills
-    %w(
-      athletics
-      awareness
-      deception
-      firearms
-      mechanics
-      medic
-      melee
-      persuasion
-      pilot
-      security
-      science
-      sneak
-      steal
-      survival
-    )
-  end
-  
-  def self.lore
-    %w(
-      history
-      philosophy
-    )
+  def skills
+    {
+      athletics:  :st,
+      awareness:  :pe,
+      deception:  :ch,
+      firearms:   :ag,
+      mechanics:  :in,
+      medic:      :in,
+      melee:      :st,
+      persuasion: :ch,
+      pilot:      :ag,
+      security:   :ag,
+      science:    :in,
+      sneak:      :ag,
+      steal:      :ag,
+      survival:   :in
+    }
   end
   
 end

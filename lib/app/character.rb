@@ -3,6 +3,7 @@ require './lib/app/perks'
 
 class Character
   include Mongoid::Document
+  belongs_to :game
   
   #Basic Info
   field :name, type: String
