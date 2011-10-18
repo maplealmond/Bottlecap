@@ -15,8 +15,8 @@ class Dice
     end
   end
   
-  def self.test(target)
-    delta = (target - roll)
+  def self.test(target)    
+    delta = (target.to_i - roll)
     index = (delta + 45) / 15
     index = [index,0].max
     index = [index,7].min
@@ -24,7 +24,7 @@ class Dice
   end
   
   def self.fudge(value)
-    @@fudge = value
+    @@fudge = value.to_i
   end
   
 end

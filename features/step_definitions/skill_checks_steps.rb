@@ -30,10 +30,11 @@ end
 
 Then /^"([^"]*)" has an effective "([^"]*)" skill of (\d+)$/ do |name, skill, value|
   character = Character.where(name: name).first
-  character.skill(skill).should == value
+  character.send(skill.to_sym).should == value.to_i
 end
 
-Then /^when "([^"]*)" rolls "([^"]*)" he scores "([^"]*)"$/ do |arg1, arg2, arg3|
-  pending # express the regexp above with the code you wish you had
+Then /^when "([^"]*)" tests "([^"]*)" he scores "([^"]*)"$/ do |name, skill, outcome|
+  character = Character.where(name: name).first
+  Dice.test(character.send(skill.to_sym).to_i).should == outcome.to_sym
 end
 

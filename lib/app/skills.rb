@@ -9,7 +9,7 @@ class Skill
   field :tagged, type: Boolean
   
   def effective_value
-    stat = character.send_message(character.game.skills[self.name.to_sym])
+    stat = character.send(character.game.skills[self.name.to_sym]).to_i
     luck = character.luck
     value + 2 * stat + luck 
   end

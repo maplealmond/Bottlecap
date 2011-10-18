@@ -101,6 +101,16 @@ class Character
     return nil
   end
   
+  #We try to catch skills as a method missing, nothing else should be caught this way
+  def method_missing(name, *args, &block)
+    s = skills.where(name: name).first
+    if s
+      s.effective_value
+    else
+      super(name, *args, &block)
+    end
+  end
+  
   def tag_skill(skill)
     skill = skills.find_or_create_by(name: skill)
     skill.tagged = true
