@@ -7,20 +7,20 @@ class Game
   
   def skills
     {
-      athletics:  :st,
-      awareness:  :pe,
-      deception:  :ch,
-      firearms:   :ag,
-      mechanics:  :in,
-      medic:      :in,
-      melee:      :st,
-      persuasion: :ch,
-      pilot:      :ag,
-      security:   :ag,
-      science:    :in,
-      sneak:      :ag,
-      steal:      :ag,
-      survival:   :in
+      athletics:  :strength,
+      awareness:  :perception,
+      deception:  :charisma,
+      firearms:   :agility,
+      mechanics:  :inteligence,
+      medic:      :inteligence,
+      melee:      :strength,
+      persuasion: :charisma,
+      pilot:      :agility,
+      security:   :agility,
+      science:    :inteligence,
+      sneak:      :agility,
+      steal:      :agility,
+      survival:   :inteligence
     }
   end
   

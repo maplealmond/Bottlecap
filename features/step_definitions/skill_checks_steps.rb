@@ -1,3 +1,5 @@
+require './lib/app/dice'
+
 Given /^an average character "([^"]*)"$/ do |name|
   game = Game.find_or_create_by(name: "Wasteland")
   character = Character.new(name: name)
@@ -23,5 +25,15 @@ Given /^"([^"]*)" has (\d+) points in "([^"]*)"$/ do |name, value, skill|
 end
 
 Given /^the next roll is a (\d+)$/ do |roll|
-  pending
+  Dice.fudge(roll)
 end
+
+Then /^"([^"]*)" has an effective "([^"]*)" skill of (\d+)$/ do |name, skill, value|
+  character = Character.where(name: name).first
+  character.skill(skill).should == value
+end
+
+Then /^when "([^"]*)" rolls "([^"]*)" he scores "([^"]*)"$/ do |arg1, arg2, arg3|
+  pending # express the regexp above with the code you wish you had
+end
+

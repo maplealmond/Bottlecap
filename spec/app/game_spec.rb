@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'app/game'
+require 'app/character'
 
 describe Game do
   before (:all) do
@@ -12,7 +13,7 @@ describe Game do
   end  
   
   it "defines a hash of skills" do
-    @game.skills[:athletics].should == :st
+    @game.skills[:athletics].should == :strength
   end
   
   it "has a set of characters" do

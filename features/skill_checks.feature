@@ -4,7 +4,7 @@ Feature: Skill Checks
 
 Scenario: Average Roll
 	Given an average character "Joe"
-	And "Joe" has 35 points in "Security"
+	And "Joe" has 35 points in "security"
 	And the next roll is a 50
-	Then "Joe" has an effective skill of 50
-	And when "Joe" rolls "Security" he scores "Fair"
+	Then "Joe" has an effective "security" skill of 50
+	And when "Joe" rolls "security" he scores "Fair"
