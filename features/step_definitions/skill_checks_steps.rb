@@ -16,8 +16,12 @@ Given /^an average character "([^"]*)"$/ do |name|
 end
 
 Given /^"([^"]*)" has (\d+) points in "([^"]*)"$/ do |name, value, skill|
-  character = Character.find(name: name).first
-  skill = character.skills.find_or_create_by(name: skill).first
+  character = Character.where(name: name).first
+  skill = character.skills.find_or_create_by(name: skill)
   skill.value = value
   skill.save
+end
+
+Given /^the next roll is a (\d+)$/ do |roll|
+  pending
 end
