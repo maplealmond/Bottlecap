@@ -85,9 +85,20 @@ class Character
   end
   
   def complete
-    self.race.to_s.length > 0 and \
-    self.skills.where(tagged: true).size >= 2 and \
-    self.perks.size >= level
+    (todo == nil)
+  end
+  
+  def todo
+    return "Select Race" if race.to_s.length == 0
+    return "Update Stats" if self.stat_total < 40
+    
+    untagged = self.skills.where(tagged: true).size - 2
+    return "Tag #{untagged} Skills" if untagged > 0
+    
+    unpicked = self.perks.size - level
+    return "Select #{unpicked} Perks" if unpicked > 0
+    
+    return nil
   end
   
   def tag_skill(skill)

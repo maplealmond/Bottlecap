@@ -24,4 +24,6 @@ class Game
     }
   end
   
+  def stat_total; 40; end
+  
 end

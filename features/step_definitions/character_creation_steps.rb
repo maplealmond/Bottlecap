@@ -1,9 +1,13 @@
 require './lib/app/character'
+require './lib/app/game'
 
 Given /^a new character "([^"]*)"$/ do |name|
-  character = Character.new
-  character.name = name
+  game = Game.find_or_create_by(name: "Wasteland")
+  character = Character.new(name: name)
+  
+  game.characters << character
   character.save
+  game.save
 end
 
 Given /^"([^"]*)" is level (\d+)$/ do |name, level|
@@ -22,6 +26,11 @@ Then /^"([^"]*)" should not be complete$/ do |name|
   character.complete.should_not == true
 end
 
+Then /^"([^"]*)" should have nothing to do$/ do |name|
+  character = Character.where(name: name).first  
+  character.todo.should == nil
+end
+
 Then /^"([^"]*)" should be complete$/ do |name|
   character = Character.where(name: name).first
   character.complete.should == true
@@ -30,6 +39,18 @@ end
 When /^"([^"]*)" picks the race "([^"]*)"$/ do |name, race|
   character = Character.where(name: name).first
   character.race = race
+  character.save
+end
+
+When /^"([^"]*)" selects starting stats$/ do |name|
+  character = Character.where(name: name).first
+  character.strength = 7
+  character.perception = 7
+  character.endurance = 6
+  character.charisma = 5
+  character.intelligence = 5
+  character.agility = 5  
+  character.luck = 5
   character.save
 end
 
