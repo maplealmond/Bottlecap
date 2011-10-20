@@ -6,7 +6,7 @@
 			$(document).ready(function(){
 	      ws = new WebSocket("ws://0.0.0.0:8080/websocket");
 	      ws.onmessage = function(evt) { $("#output").append("<br/>"+evt.data); };
-	      ws.onclose = function() { alert("socket closed"); };
+	      ws.onclose = function() { $("#output").append("Connection Lost..."); };
 	      ws.onopen = function() {
 	        debug("connected...");
 	        ws.send("hello server");

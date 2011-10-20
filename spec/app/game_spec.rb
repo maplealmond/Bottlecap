@@ -1,6 +1,8 @@
 require 'spec_helper'
 require 'app/game'
 require 'app/character'
+require 'app/controller'
+
 
 describe Game do
   before (:all) do

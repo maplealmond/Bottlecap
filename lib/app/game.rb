@@ -1,3 +1,5 @@
+require './lib/app/character'
+
 class Game
   include Mongoid::Document
     
