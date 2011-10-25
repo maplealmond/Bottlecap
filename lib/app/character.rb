@@ -114,7 +114,28 @@ class Character
   def tag_skill(skill)
     skill = skills.find_or_create_by(name: skill)
     skill.tagged = true
+    skill.value = skill.value + 15
     skill.save
+  end
+  
+  def untag_skill(skill)
+    skill = skills.find_or_create_by(name: skill)
+    skill.tagged = false
+    skill.save
+  end
+  
+  def practice_skill(skill)
+    skill = skills.find_or_create_by(name: skill)
+    skill.practice = true
+    skill.save
+  end
+  
+  def advance_skills    
+    skills.all.each do |skill|
+      before = skill.advancement
+      skill.advance  
+      skill.save
+    end
   end
   
   def take_perk(perk)

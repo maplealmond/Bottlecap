@@ -9,22 +9,30 @@ Scenario: Basic Level
 	Then "Joe" has an effective "firearms" skill of 15
 
 #Level cap is (20 + 2*Level)
+#Advancement is 5 use per 1%
+Scenario: Basic Practice
+	Given an average character "Joe"
+	When "Joe" has not tagged "firearms"
+	And  "Joe" has practiced "firearms" 5 times
+	Then "Joe" has an effective "firearms" skill of 16
+
 Scenario: Basic Practice to Level Cap
 	Given an average character "Joe"
 	When "Joe" has not tagged "firearms"
-	And  "Joe" has practiced "firearms" 100 times
+	And  "Joe" has practiced "firearms" 200 times
 	Then "Joe" has an effective "firearms" skill of 37
 
-#Tagging adds +15%
-Scenario: Tagged Skill
+#Tagging adds 15% and changes the advancement to 1 use per 1%
+Scenario: Tagged Practice
 	Given an average character "Joe"
 	When "Joe" has tagged "firearms"
 	Then "Joe" has an effective "firearms" skill of 30
+	And  "Joe" has practiced "firearms" 5 times
+	Then "Joe" has an effective "firearms" skill of 35
 
-#Level 1 cap is 22% + 15% from stats, advancement is 1 use per 1%
 Scenario: Tagging Practice to Level Cap
 	Given an average character "Joe"
 	When "Joe" has tagged "firearms"
-	And  "Joe" has practiced "firearms" 10 times
+	And  "Joe" has practiced "firearms" 30 times
 	Then "Joe" has an effective "firearms" skill of 37
 
