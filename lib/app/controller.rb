@@ -33,7 +33,16 @@ class Controller
       return "Game not found"
     end
   end
-    
+  
+  def load_map(tokens)
+    @map = Map.where(name: tokens[0]).first
+    if @map
+      return "Game has been loaded"
+    else
+      return "Game not found"
+    end
+  end
+  
   def fudge(tokens)
     amount = tokens[0]
     Dice.fudge(amount)
