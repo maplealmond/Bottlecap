@@ -1,3 +1,5 @@
+require './lib/app/room'
+
 class Map
   include Mongoid::Document
   
