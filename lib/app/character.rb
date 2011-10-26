@@ -31,7 +31,11 @@ class Character
     end
   end
   
-  embeds_many :perks
+  embeds_many :perks do  
+    def named(n)
+      where(name: n).first
+    end
+  end
   
   #Potential problems
   field :damage, type: Integer
@@ -136,7 +140,7 @@ class Character
   end
   
   def take_perk(perk)
-    perk = perks.find_or_create_by(name: perk)
+    perk = perks.named(perk) || Perk.new(name: perk, character: self)
     perk.rank = perk.rank.to_i + 1
   end
   
