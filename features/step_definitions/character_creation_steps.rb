@@ -3,7 +3,7 @@ require './lib/app/game'
 
 Given /^a new character "([^"]*)"$/ do |name|
   @controller ||= Controller.new
-  game = @controller.games["Wasteland"] ||= Game.new(name: "Wasteland")
+  game = @controller.game ||= Game.new(name: "Wasteland")
   character = @controller.characters[name] = Character.new(name: name)
   game.characters << character
 end

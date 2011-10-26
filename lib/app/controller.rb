@@ -4,13 +4,10 @@ require './lib/app/dice'
 class Controller
 
   attr_accessor :characters
-  attr_accessor :games
-  attr_accessor :maps
+  attr_accessor :game
   
   def initialize
     @characters = {}
-    @games = {}
-    @maps = {}
   end
   
   def parse(msg)
