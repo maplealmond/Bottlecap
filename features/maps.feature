@@ -6,13 +6,13 @@ Scenario: Start building a map
 	Given a connection
 	And I type "create game Wasteland"
 	And I type "load game Wasteland"
-	And I type "load map Vault 50"
+	And I type "load map Arena"
 	Then I should not see "Map has been loaded"
 	
 Scenario: Start building a map
 	Given a connection
 	And I type "create game Wasteland"
 	And I type "load game Wasteland"
-	And I type "create map Vault 50"
-	And I type "load map Vault 50"
+	And I type "create map Arena"
+	And I type "load map Arena"
 	Then I should not see "Map has been loaded"

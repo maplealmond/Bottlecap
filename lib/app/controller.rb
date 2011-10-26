@@ -1,9 +1,10 @@
 require './lib/app/game'
 require './lib/app/dice'
+require './lib/app/map'
 
 class Controller
 
-  attr_accessor :game
+  attr_accessor :game, :map
   
   def characters
     @game.characters
@@ -37,9 +38,9 @@ class Controller
   def load_map(tokens)
     @map = Map.where(name: tokens[0]).first
     if @map
-      return "Game has been loaded"
+      return "Map has been loaded"
     else
-      return "Game not found"
+      return "Map not found"
     end
   end
   
