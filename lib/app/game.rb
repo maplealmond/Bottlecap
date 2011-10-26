@@ -2,10 +2,15 @@ require './lib/app/character'
 
 class Game
   include Mongoid::Document
-    
+  
   field :name, type: String
   index :name, unique: true
-  has_many :characters
+  
+  embeds_many :characters do  
+    def named(n)
+      where(name: n).first
+    end
+  end
   
   def skills
     {

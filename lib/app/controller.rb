@@ -3,11 +3,10 @@ require './lib/app/dice'
 
 class Controller
 
-  attr_accessor :characters
   attr_accessor :game
   
-  def initialize
-    @characters = {}
+  def characters
+    @game.characters
   end
   
   def parse(msg)
