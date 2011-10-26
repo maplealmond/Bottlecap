@@ -2,6 +2,16 @@ require './lib/app/game'
 require './lib/app/dice'
 
 class Controller
+
+  attr_accessor :characters
+  attr_accessor :games
+  attr_accessor :maps
+  
+  def initialize
+    @characters = {}
+    @games = {}
+    @maps = {}
+  end
   
   def parse(msg)
     tokens = msg.split(" ")
@@ -13,6 +23,7 @@ class Controller
     end
   end  
   
+  ##Commands... should these get their own module?
   def create_game(tokens)
     @game = Game.find_or_create_by(name: tokens[0])
     return "Game has been created"

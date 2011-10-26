@@ -25,7 +25,12 @@ class Character
   end
   
   #Skills
-  embeds_many :skills
+  embeds_many :skills do  
+    def named(n)
+      where(name: n).first or Skill.new(character: self.base, name: n)
+    end
+  end
+  
   embeds_many :perks
   
   #Potential problems
@@ -102,46 +107,37 @@ class Character
   end
   
   #We try to catch skills as a method missing, nothing else should be caught this way
-  def method_missing(name, *args, &block)
-    s = skills.where(name: name).first
-    if s
-      s.effective_value
-    else
-      super(name, *args, &block)
-    end
+  def test(skill)
+    s = self.skills.named(skill)
+    Dice.test(s.effective_value)
   end
   
   def tag_skill(skill)
-    skill = skills.find_or_create_by(name: skill)
+    skill = skills.named(skill)
+    skill.value += 15 unless skill.tagged
     skill.tagged = true
-    skill.value = skill.value + 15
-    skill.save
   end
   
   def untag_skill(skill)
-    skill = skills.find_or_create_by(name: skill)
+    skill = skills.named(skill)
+    skill.value -= 15 if skill.tagged
     skill.tagged = false
-    skill.save
   end
   
   def practice_skill(skill)
-    skill = skills.find_or_create_by(name: skill)
-    skill.practice = true
-    skill.save
+    skills.named(skill).practice = true
   end
   
   def advance_skills    
     skills.all.each do |skill|
       before = skill.advancement
       skill.advance  
-      skill.save
     end
   end
   
   def take_perk(perk)
     perk = perks.find_or_create_by(name: perk)
     perk.rank = perk.rank.to_i + 1
-    perk.save
   end
   
   def sequence

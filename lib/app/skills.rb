@@ -5,11 +5,10 @@ class Skill
   field :name,   type: String
   index :name, unique: true
   
-  field :value,  type: Integer
-  field :tagged, type: Boolean
-
-  field :practice, type: Boolean
-  field :advancement, type: Integer
+  field :value,  type: Integer, default: 0
+  field :tagged, type: Boolean, default: false
+  field :practice, type: Boolean, default: false
+  field :advancement, type: Integer, default: 
   
   def value
     return read_attribute(:value).to_i
