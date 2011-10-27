@@ -15,4 +15,4 @@ Scenario: Start building a map
 	And I type "load game Wasteland"
 	And I type "create map Arena"
 	And I type "load map Arena"
-	Then I should not see "Map has been loaded"
+	Then I should see "Map has been loaded"

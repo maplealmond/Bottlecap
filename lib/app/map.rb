@@ -11,5 +11,9 @@ class Map
       where(name: n).first
     end
   end
-    
+  
+  def parse
+    #This loads up a map, and internally evaluates it
+  end
+  
 end

@@ -35,6 +35,11 @@ class Controller
     end
   end
   
+  def create_map(tokens)
+    @map = Map.find_or_create_by(name: tokens[0])
+    return "Map has been created"
+  end
+  
   def load_map(tokens)
     @map = Map.where(name: tokens[0]).first
     if @map
